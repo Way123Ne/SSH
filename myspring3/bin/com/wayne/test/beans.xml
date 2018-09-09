@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+<!-- 通过spring容器获得该bean时总是返回唯一的实例 -->
+	<bean id="student" class="com.wayne.entity.Student" scope="singleton">
+		<property name="name">
+			<value>lisi</value>
+		</property>
+	</bean>
+
+<!-- 若 scope=prototype则 每次获得bean都会生成一个新的对象  -->
+	<!-- <bean id="student" class="com.wayne.entity.Student" scope="prototype">
+		<property name="name">
+			<value>lisi</value>
+		</property>
+	</bean> -->
+</beans>

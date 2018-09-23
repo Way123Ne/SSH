@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- bean元素的作用是，当我们的spring框架加载的时候，spring就会自动的创建一个bean -->
+	<bean id="department" class="com.wayne.entity.Department">
+
+		<property name="name" value="财务部"></property>
+		<!-- 给数组注值 -->
+		<property name="empName">
+			<list>
+				<value>小明</value>
+				<value>小明小明</value>
+				<value>小明小明小明</value>
+			</list>
+		</property>
+
+		<!-- 给list注入值 -->
+		<property name="empList">
+			<list>
+				<ref bean="emp1" />
+				<ref bean="emp2" />
+			</list>
+		</property>
+
+		<!-- 给Set注入值 -->
+		<property name="empSet">
+			<list>
+				<ref bean="emp1" />
+				<ref bean="emp2" />
+			</list>
+		</property>
+
+		<!-- 给Map注入值 -->
+		<property name="empMap">
+			<map>
+				<entry key="1" value-ref="emp1"></entry>
+				<entry key="2" value-ref="emp2"></entry>
+			</map>
+		</property>
+
+		<!-- 给属性集合配置 -->
+		<property name="pp">
+			<props>
+				<prop key="pp1">abcd</prop>
+				<prop key="pp2">hello</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="emp1" class="com.wayne.entity.Employee">
+		<property name="name" value="王五"></property>
+		<property name="id" value="1"></property>
+	</bean>
+
+	<bean id="emp2" class="com.wayne.entity.Employee">
+		<property name="name" value="李四"></property>
+		<property name="id" value="2"></property>
+	</bean>
+</beans>

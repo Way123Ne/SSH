@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- bean元素的作用是，当我们的spring框架加载的时候，spring就会自动的创建一个bean -->
+	<!-- 装配一个学生对象 -->
+	<bean id="student" class="com.wayne.entity.Student">
+		<property name="name" value="李六"></property>
+		<property name="age" value="20"></property>
+	</bean>
+
+	<!-- 配置Graduate对象 -->
+	<bean id="graduate" parent="student" class="com.wayne.entity.Graduate">
+		<!-- 为Graduate对象配置属于自己的name&age属性,则会替代从父对象继承的数据 -->
+		<property name="name" value="关羽"></property>
+		<property name="age" value="50"></property>
+		<property name="degree" value="学士"></property>
+	</bean>
+</beans>

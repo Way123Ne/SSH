@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+				>
+	<!-- bean元素的作用是，当我们的spring框架加载的时候，spring就会自动的创建一个bean -->
+	<!-- 引入dbutil.properties配置文件 -->
+	<context:property-placeholder location="classpath:com/wayne/test/db.properties"/>
+	
+	<!-- 配置DBUtil对象 -->
+	<!-- <bean id="dbutil" class="com.wayne.utils.DBUtil">
+	<property name="name" value="scott"></property>
+		<property name="drivername" value="oracle:jdbc:driver:OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:swq"></property>
+		<property name="password" value="tiger"></property>
+	</bean> -->
+	
+	  <bean id="dbutil" class="com.wayne.utils.DBUtil">
+	<property name="name" value="${name}"></property>
+		<property name="drivername" value="${drivername}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="password" value="${password}"></property>
+	</bean> 
+	
+	 
+</beans>

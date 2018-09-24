@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+				>
+	<!-- bean元素的作用是，当我们的spring框架加载的时候，spring就会自动的创建一个bean -->
+	<!-- 配置被代理对象 -->
+	<bean id="testService" class="com.wayne.aop.TestService">
+		<property name="name" value="小宋"></property>
+	</bean>
+	
+	<!-- 配置前置通知 -->
+	 <bean id="MyMethodBeforeAdvice" class="com.wayne.aop.MyMethodBeforeAdvice"></bean>
+	 
+	 <!-- 配置环绕通知 -->
+	 <bean id="MyMethodInterceptor" class="com.wayne.aop.MyMethodInterceptor"></bean>
+	 
+	 <!-- 配置后置通知 -->
+	 <bean id="MyAfterReturningAdvice" class="com.wayne.aop.MyAfterReturningAdvice"></bean>
+	 
+	  <!-- 配置异常通知 -->
+	 <bean id="MyThrowsAdvice" class="com.wayne.aop.MyThrowsAdvice"></bean>
+	 
+	 <!-- 配置代理对象 -->
+	 <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+	 <!-- 代理接口集 -->
+	 <property name="proxyInterfaces">
+	 	<list>
+	 		<value>com.wayne.aop.TestServiceInter</value>
+	 		<value>com.wayne.aop.TestServiceInter2</value>
+	 	</list>
+	 </property>
+	 
+	 <!-- 把通知支入到代理对象中 -->
+	 <property name="interceptorNames">
+	 <!-- 相当于把MyMethodBeforeAdvice前置通知和代理对象关联起来，我们也
+	 可以把通知看成拦截器,struts2核心是拦截器相当于监听器 -->
+		<list>
+		<!-- 支入前置通知 -->
+		<value>MyMethodBeforeAdvice</value>
+		<!-- 支入后置通知 -->
+		<value>MyAfterReturningAdvice</value>
+		<!-- 支入环绕通知 -->
+		<value>MyMethodInterceptor</value>
+		<!-- 支入异常通知 -->
+		<value>MyThrowsAdvice</value>
+		</list>
+	 </property>
+	 
+	 <!-- 引用被代理对象 -->
+	 <property name="target" ref="testService"></property>
+	 </bean>
+	 
+	 
+</beans>

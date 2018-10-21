@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <form-beans >
+    <form-bean name="userForm" type="com.wayne.struts.form.UserForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <!-- 全局跳转,任何action都可以跳转到global-forwards指向的页面 -->
+  <global-forwards >
+    <forward name="err" path="/WEB-INF/err.jsp" />
+
+  </global-forwards>
+
+  <!-- parameter:用来区分用户的不同的请求,任意属性值即可 -->
+  <action-mappings >
+    <action
+      attribute="userForm"
+      input="/WEB-INF/login.jsp"
+      name="userForm"
+      parameter="flag"
+      path="/loginAndlogout"
+      scope="request"
+      type="com.wayne.struts.action.LoginAndlogoutAction"
+      validate="false"
+      cancellable="true" >
+      <!-- 如果一个forward写在action的标签中,则说明是局部跳转,对应的action跳转到对应的forward指向的页面 -->
+      <forward name="loginok" path="/WEB-INF/ok.jsp" />
+      <forward name="loginerr" path="/WEB-INF/login.jsp" />
+      
+      
+      
+      
+      
+      
+      
+    </action>
+
+
+  </action-mappings>
+
+  <message-resources parameter="com.wayne.struts.ApplicationResources" />
+</struts-config>
+

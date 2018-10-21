@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <form-beans >
+  <form-bean name="userForm" type="org.apache.struts.action.DynaActionForm">
+  <form-property name="name" type="java.lang.String"></form-property>
+	<form-property name="password" type="java.lang.String"></form-property>
+	<form-property name="email" type="java.lang.String"></form-property>
+  </form-bean>
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      attribute="userForm"
+      input="/WEB-INF/register.jsp"
+      name="userForm"
+      parameter="flag"
+      path="/registerAction"
+      scope="request"
+      type="com.yourcompany.struts.action.RegisterAction"
+      validate="false"
+      cancellable="true" >
+      <forward name="ok" path="/WEB-INF/ok.jsp" />
+    </action>
+
+
+  </action-mappings>
+
+  <message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+</struts-config>
+
